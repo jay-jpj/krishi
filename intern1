@@ -1,0 +1,12 @@
+def custom_feedback_func_1(seed):
+    feedback = (seed[0] & seed[3]) ^ (seed[8] | seed[11]) ^ (seed[15] & seed[18]) ^ (seed[20] | seed[24]) ^ (seed[28] & seed[31]) ^ (seed[35] | seed[40]) ^ (seed[44] & seed[47]) ^ (seed[52] | seed[55]) ^ (seed[60] & seed[63]) ^ (seed[68] | seed[72]) ^ (seed[77] & seed[80]) ^ (seed[84] | seed[88]) ^ (seed[93] & seed[96]) ^ (seed[100] | seed[104]) ^ (seed[108] & seed[113]) ^ (seed[116] | seed[120]) ^ seed[123]
+    return feedback
+
+def custom_feedback_func_2(seed):
+    feedback = (seed[1] & seed[4]) ^ (seed[7] | seed[10]) ^ (seed[13] & seed[16]) ^ (seed[19] | seed[22]) ^ (seed[25] & seed[28]) ^ (seed[31] | seed[34]) ^ (seed[37] & seed[40]) ^ (seed[43] | seed[46]) ^ (seed[49] & seed[52]) ^ (seed[55] | seed[58]) ^ (seed[61] & seed[64]) ^ (seed[67] | seed[70]) ^ (seed[73] & seed[76]) ^ (seed[79] | seed[82]) ^ (seed[85] & seed[88]) ^ (seed[91] | seed[94]) ^ (seed[97] & seed[100]) ^ (seed[103] | seed[106]) ^ (seed[109] & seed[112]) ^ (seed[115] | seed[118]) ^ seed[121] ^ seed[124] ^ seed[127]
+    return feedback
+
+def custom_feedback_func_3(seed):
+    feedback = (seed[2] & seed[5]) ^ (seed[8] | seed[11]) ^ (seed[14] & seed[17]) ^ (seed[20] | seed[23]) ^ (seed[26] & seed[29]) ^ (seed[32] | seed[35]) ^ (seed[38] & seed[41]) ^ (seed[44] | seed[47]) ^ (seed[50] & seed[53]) ^ (seed[56] | seed[59]) ^ (seed[62] & seed[65]) ^ (seed[68] | seed[71]) ^ (seed[74] & seed[77]) ^ (seed[80] | seed[83]) ^ (seed[86] & seed[89]) ^ (seed[92] | seed[95]) ^ (seed[98] & seed[101]) ^ (seed[104] | seed[107]) ^ (seed[110] & seed[113]) ^ (seed[116] | seed[119]) ^ seed[122] ^ seed[125]
+    return feedback
+
