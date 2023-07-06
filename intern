@@ -1,0 +1,54 @@
+class GFNLFSR:
+    def __init__(self, feedback_funcs, seed, field_size):
+        self.size = len(seed)
+        self.seed = seed[:]
+        self.feedback_funcs = feedback_funcs
+        self.field_size = field_size
+        
+    def shift(self):
+        feedback = 0
+        for feedback_func in self.feedback_funcs:
+            feedback ^= feedback_func(self.seed)
+        
+        # GF(2^m) multiplication with the primitive polynomial x^m + x^a + x^b + ...
+        msb = self.seed[0]
+        self.seed = self.seed[1:] + [feedback]
+        if msb:
+            for i in range(len(self.seed)):
+                self.seed[i] ^= self.field_size[i]
+        
+        return msb
+    
+    def generate_sequence(self, length):
+        sequence = []
+        for _ in range(length):
+            sequence.append(self.shift())
+        
+        return sequence
+
+
+# Example usage
+def custom_feedback_func_1(seed):
+    # Define your custom nonlinear feedback function 1 here
+    feedback = seed[0] ^ seed[2] ^ seed[5] ^ seed[7] ^ seed[8]
+    return feedback
+
+def custom_feedback_func_2(seed):
+    # Define your custom nonlinear feedback function 2 here
+    feedback = seed[10] ^ seed[12] ^ seed[15]
+    return feedback
+
+def custom_feedback_func_3(seed):
+    # Define your custom nonlinear feedback function 3 here
+    feedback = seed[3] ^ seed[6] ^ seed[9] ^ seed[11]
+    return feedback
+
+seed = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]  # Initial seed
+field_size = [0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1]  # Field size (GF(2^m)) polynomial coefficients
+
+feedback_funcs = [custom_feedback_func_1, custom_feedback_func_2, custom_feedback_func_3]
+gfnlfsr = GFNLFSR(feedback_funcs, seed, field_size)
+
+sequence_length = 20  # Adjust as desired
+generated_sequence = gfnlfsr.generate_sequence(sequence_length)
+print(generated_sequence)
